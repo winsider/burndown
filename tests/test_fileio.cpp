@@ -25,8 +25,8 @@ public:
 private:
     void create_file()
     {
-        auto f = std::fopen(test_filename, "w");      
-        int8_t data[1000];
+        auto f = std::fopen(test_filename, "wb");      
+        uint8_t data[1000];
         for (auto i=0; i<1000; i++)
             data[i] = i % 256;
         std::fwrite(&data, 1, 1000, f);   

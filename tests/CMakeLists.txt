@@ -3,7 +3,7 @@ include(FetchContent)
 FetchContent_Declare(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG        release-1.8.0
+  GIT_TAG        release-1.8.1
 )
 FetchContent_GetProperties(googletest)
 if(NOT googletest_POPULATED)
@@ -23,7 +23,7 @@ add_executable(testburndown
 target_compile_features(testburndown PRIVATE cxx_std_17)
 
 # Should be linked to the main library, as well as the Catch2 testing library
-target_link_libraries(testburndown PRIVATE burndown_library gtest gtest_main)
+target_link_libraries(testburndown PRIVATE burndown_library gtest_main)
 
 # If you register a test, then ctest and make test will run it.
 # You can also run examples and check the output, as well.

@@ -1,11 +1,13 @@
 #include <burndown/fileio.hpp>
+#include <stdexcept>
 
 namespace ltc
 {
     namespace bd
     {
         Filestat::Filestat()
-            : m_status(-1)
+            : m_stat_buf{}
+            , m_status(-1)
         {
             /* no op */
         }

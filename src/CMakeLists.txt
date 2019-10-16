@@ -6,12 +6,14 @@
 set(HEADER_LIST 
     "${Burndown_SOURCE_DIR}/include/burndown/parser.hpp"
     "${Burndown_SOURCE_DIR}/include/burndown/fileio.hpp"
+	"${Burndown_SOURCE_DIR}/include/burndown/template.hpp"
     )
 
 # Make an automatic library - will be static or dynamic based on user setting
 add_library(burndown_library 
     parser.cpp 
     fileio.cpp
+	template.cpp
     ${HEADER_LIST})
 
 # We need this directory, and users of our library will need it too

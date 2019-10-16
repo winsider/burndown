@@ -3,7 +3,7 @@
 
 using namespace ltc::bd;
 
-int main()
+int main(int argc, char *argv[])
 {
     std::ios_base::sync_with_stdio(false);
     std::cout << "Burndown\n";
