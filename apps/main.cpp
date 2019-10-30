@@ -10,7 +10,8 @@ int main(int argc, char *argv[])
     std::cout << "- zero cost abstraction web\n";
     try
     {
-        parse_csp("test");
+        std::string file_name("./../../docs/example.csp"); 
+        parse_csp(file_name);
     }
     catch (std::runtime_error& err)
     {

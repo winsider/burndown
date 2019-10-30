@@ -87,8 +87,7 @@ namespace ltc
         {
             Filestat info(*this);
             auto size = info.filesize();
-            std::vector<char> file_data;
-            file_data.reserve(size);
+            std::vector<char> file_data(size);
             fseek(m_file.get(), 0, SEEK_SET);
             if (fread(file_data.data(), 1, size, m_file.get()) != size)
                 throw std::runtime_error("Unexpected read error");

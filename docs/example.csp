@@ -1,0 +1,11 @@
+<++ #include <example/index.hpp> ++>
+<html>
+<body>
+	<h1><++ encode(title()); ++></h1>
+	<ul>
+		<++ for (const auto& item : items()) { ++>
+		<li><++ encode(item.text()) ++></li>
+		<++ } ++>
+	</ul>
+</body>
+</html>
