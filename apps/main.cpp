@@ -8,5 +8,12 @@ int main(int argc, char *argv[])
     std::ios_base::sync_with_stdio(false);
     std::cout << "Burndown\n";
     std::cout << "- zero cost abstraction web\n";
-    ParseCSP("test");    
+    try
+    {
+        parse_csp("test");
+    }
+    catch (std::runtime_error& err)
+    {
+        std::cerr << "EXCEPTION: " << err.what() << '\n';
+    }
 }

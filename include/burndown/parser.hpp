@@ -9,6 +9,6 @@ namespace ltc
          * Parse csp file.
          * \param filepath Full path and name to csp file
          */
-        void ParseCSP(const std::string& filepath);        
+        void parse_csp(const std::string& filepath);        
     }
 }
