@@ -1,5 +1,5 @@
 #include <iostream>
-#include <burndown/parser.hpp>
+#include <burndown/template.hpp>
 
 using namespace ltc::bd;
 
@@ -11,7 +11,8 @@ int main(int argc, char *argv[])
     try
     {
         std::string file_name("./../../docs/example.csp"); 
-        parse_csp(file_name);
+        auto tmpl = Template::from_file(file_name);
+        tmpl->write_translation_unit();
     }
     catch (std::runtime_error& err)
     {

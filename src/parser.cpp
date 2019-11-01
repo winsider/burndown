@@ -1,6 +1,5 @@
 #include <burndown/parser.hpp>
 #include <burndown/fileio.hpp>
-#include <vector>
 #include <stdexcept>
 #include <iostream>
 
@@ -8,7 +7,58 @@ namespace ltc
 {
     namespace bd
     {
-        void parse_csp(const std::string& filename)
+        std::vector<std::string_view> parse_csp_buffer(const std::vector<char>& csp_txt)
+        {
+            std::vector<std::string_view> cblks;
+
+            const auto end_it = csp_txt.end() - 3;
+            auto it = csp_txt.begin();
+            
+            // Look for <++
+            auto linenum{ 1 };
+            while (it <= end_it)
+            {
+                if (*it == '\n')
+                    ++linenum;
+
+                if (*it == '<')
+                {
+                    if (*(++it) == '+' && *(++it) == '+')
+                    {
+                        // Begin codeblock
+                        const auto start_cb = ++it;
+                        const auto start_cb_line = linenum;
+                        auto end_cb = csp_txt.end();
+                        while (it != end_it)
+                        {
+                            if (*it == '\n')
+                                ++linenum;
+                            else if (*it == '+')
+                            {
+                                if (*(++it) == '+' && *(++it) == '>')
+                                {
+                                    // End codeblock
+                                    end_cb = it - 2;
+                                    if (end_cb - start_cb > 0)
+                                        cblks.emplace_back(std::string_view(&(*start_cb), end_cb - start_cb));
+                                    break;
+                                }
+                                else continue;
+                            }
+                            ++it;
+                        }
+                        if (end_cb == csp_txt.end())
+                            throw std::runtime_error("Codeblock on line " + std::to_string(start_cb_line) + " not terminated.");
+                    }
+                    else continue;
+                }
+                ++it;
+            }
+
+            return cblks;
+        }
+
+        void parse_csp_file(const std::string& filename)
         {
             File csp_file(filename);
             const auto csp_txt = csp_file.read_text();
