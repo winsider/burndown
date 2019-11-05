@@ -33,7 +33,7 @@ namespace ltc
         {
             m_tunit_writers.emplace_back([txt](int idx)
                 {
-                    std::cout << "write(\"" << txt << "\");\n";
+                    std::cout << "write(\"html(" << txt << ")html\");\n";
                 });
         }
 
