@@ -40,8 +40,12 @@ endif()
 
 # Accumulator library
 # This is header only, so could be replaced with git submodules or FetchContent
-#find_package(Boost REQUIRED)
+
 # Adds Boost::boost
+#set(Boost_USE_MULTITHREADED ON)
+#set(Boost_USE_STATIC_LIBS   OFF)
+set(BOOST_LIBRARYDIR "C:/Program Files/boost/boost_1_71_0/stage/lib")
+find_package(Boost 1.71 REQUIRED)
 
 # Formatting library
 #FetchContent_Declare(

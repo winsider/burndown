@@ -5,6 +5,7 @@ Zero cost abstration web tool.
 - CMake version 3.14+
 - Doxygen
 - C++ compiler version C14+
+- Boost 1.71
 
 ## Getting started
 cd build

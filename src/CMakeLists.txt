@@ -7,6 +7,7 @@ set(HEADER_LIST
     "${Burndown_SOURCE_DIR}/include/burndown/parser.hpp"
     "${Burndown_SOURCE_DIR}/include/burndown/fileio.hpp"
 	"${Burndown_SOURCE_DIR}/include/burndown/template.hpp"
+	"${Burndown_SOURCE_DIR}/include/burndown/command.hpp"
     )
 
 # Make an automatic library - will be static or dynamic based on user setting
@@ -14,13 +15,14 @@ add_library(burndown_library
     parser.cpp 
     fileio.cpp
 	template.cpp
+	command.cpp
     ${HEADER_LIST})
 
 # We need this directory, and users of our library will need it too
 target_include_directories(burndown_library PUBLIC ../include)
 
 # This depends on (header only) boost
-#target_link_libraries(burndown_library PRIVATE Boost::boost)
+target_link_libraries(burndown_library PUBLIC Boost::boost)
 
 # All users of this library will need at least C++14
 target_compile_features(burndown_library PUBLIC cxx_std_17)
