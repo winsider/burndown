@@ -1,3 +1,4 @@
+#define _CRT_NONSTDC_NO_WARNINGS
 #include <burndown/fileio.hpp>
 #include <stdexcept>
 
@@ -60,8 +61,8 @@ namespace ltc
 
         bool File::open(const std::string& filename)
         {
-            FILE* file;
-            if (fopen_s(&file, filename.c_str(), "rb") != 0)
+            FILE* file = fopen(filename.c_str(), "rb");
+            if (file == nullptr)
                 return false;
 
             m_file = std::unique_ptr<FILE, file_deleter>(file);
@@ -80,7 +81,7 @@ namespace ltc
 
         int File::file_no() const
         {
-            return _fileno(m_file.get());
+            return fileno(m_file.get());
         }
 
         std::vector<char> File::read_text()

@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "stdexcept": "cpp"
-    }
+        "stdexcept": "cpp",
+        "string_view": "cpp"
+    },
+    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools"
 }
