@@ -21,7 +21,7 @@ add_library(burndown_library
 # We need this directory, and users of our library will need it too
 target_include_directories(burndown_library PUBLIC ../include)
 
-target_link_directories(burndown_library PUBLIC "C:/Program Files/boost/boost_1_71_0/stage/lib")
+target_link_directories(burndown_library PUBLIC ${Boost_LIBRARY_DIRS})
 
 # This depends on (header only) boost
 target_link_libraries(burndown_library PUBLIC Boost::boost)
