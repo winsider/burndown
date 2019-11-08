@@ -5,6 +5,11 @@ project(Burndown
     DESCRIPTION "Burndown - Zero cost abstraction web builder"
     LANGUAGES CXX)
 
+if(MSVC)
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+	add_definitions(-D_CRT_NONSTDC_NO_WARNINGS)
+endif()
+
 # Only do these if this is the main project, and not if it is included through add_subdirectory
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 

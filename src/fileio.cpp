@@ -1,4 +1,3 @@
-#define _CRT_NONSTDC_NO_WARNINGS
 #include <burndown/fileio.hpp>
 #include <stdexcept>
 
