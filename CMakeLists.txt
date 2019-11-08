@@ -50,7 +50,10 @@ endif()
 #set(Boost_USE_MULTITHREADED ON)
 #set(Boost_USE_STATIC_LIBS   OFF)
 #set(BOOST_LIBRARYDIR "C:/Program Files/boost/boost_1_71_0/stage/lib")
-find_package(Boost 1.71 REQUIRED)
+set(Boost_NO_BOOST_CMAKE ON)
+find_package(Boost 1.71 REQUIRED program_options)
+message("boost lib: ${Boost_LIBRARIES}")
+message("boost inc: ${Boost_INCLUDE_DIR}")
 
 # Formatting library
 #FetchContent_Declare(
