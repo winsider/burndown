@@ -19,12 +19,15 @@ add_library(burndown_library
     ${HEADER_LIST})
 
 # We need this directory, and users of our library will need it too
-target_include_directories(burndown_library PUBLIC ../include ${Boost_INCLUDE_DIR})
+target_include_directories(burndown_library PUBLIC 
+    ../include 
+    ${Boost_INCLUDE_DIR}
+    ${Sass_INCLUDE_DIR})
 
 target_link_directories(burndown_library PUBLIC ${Boost_LIBRARY_DIRS})
 
-# This depends on (header only) boost
-target_link_libraries(burndown_library PUBLIC ${Boost_LIBRARIES})
+# depends on boost, libsass
+target_link_libraries(burndown_library PUBLIC ${Boost_LIBRARIES} ${Sass_LIBRARIES})
 
 # All users of this library will need at least C++14
 target_compile_features(burndown_library PUBLIC cxx_std_17)

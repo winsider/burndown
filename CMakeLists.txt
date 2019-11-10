@@ -57,9 +57,14 @@ if (MSVC)
 else()
     find_package(Boost 1.71 REQUIRED program_options)
 endif()
-
 message("boost lib: ${Boost_LIBRARIES}")
 message("boost inc: ${Boost_INCLUDE_DIR}")
+
+# libsass
+find_library(Sass_LIBRARIES sass /usr/local/lib) 
+set(Sass_INCLUDE_DIR ../../external/libsass/include)
+message("sass lib: ${Sass_LIBRARIES}")
+message("sass inc: ${Sass_INCLUDE_DIR}")
 
 # Formatting library
 #FetchContent_Declare(
