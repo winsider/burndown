@@ -61,8 +61,8 @@ message("boost lib: ${Boost_LIBRARIES}")
 message("boost inc: ${Boost_INCLUDE_DIR}")
 
 # libsass
-find_library(Sass_LIBRARIES sass /usr/local/lib) 
-set(Sass_INCLUDE_DIR ../../external/libsass/include)
+find_library(Sass_LIBRARIES libsass /usr/local/lib ../libsass/win/bin) 
+get_filename_component(Sass_INCLUDE_DIR ../libsass/include ABSOLUTE)
 message("sass lib: ${Sass_LIBRARIES}")
 message("sass inc: ${Sass_INCLUDE_DIR}")
 
