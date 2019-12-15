@@ -55,14 +55,14 @@ set(Boost_NO_BOOST_CMAKE    ON)
 if (MSVC)
     find_package(Boost 1.71 REQUIRED)
 else()
-    find_package(Boost 1.71 REQUIRED program_options)
+    find_package(Boost 1.61 REQUIRED program_options)
 endif()
 message("boost lib: ${Boost_LIBRARIES}")
 message("boost inc: ${Boost_INCLUDE_DIR}")
 
 # libsass
-find_library(Sass_LIBRARIES libsass /usr/local/lib ../libsass/win/bin) 
-get_filename_component(Sass_INCLUDE_DIR ../libsass/include ABSOLUTE)
+find_library(Sass_LIBRARIES NAMES sass libsass PATHS /usr/local/lib ../external/libsass/lib ../libsass/win/bin) 
+get_filename_component(Sass_INCLUDE_DIR ../external/libsass/include ABSOLUTE)
 message("sass lib: ${Sass_LIBRARIES}")
 message("sass inc: ${Sass_INCLUDE_DIR}")
 
