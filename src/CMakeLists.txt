@@ -8,6 +8,7 @@ set(HEADER_LIST
     "${Burndown_SOURCE_DIR}/include/burndown/fileio.hpp"
 	"${Burndown_SOURCE_DIR}/include/burndown/template.hpp"
 	"${Burndown_SOURCE_DIR}/include/burndown/command.hpp"
+	"${Burndown_SOURCE_DIR}/include/burndown/string_segment.hpp"
     )
 
 # Make an automatic library - will be static or dynamic based on user setting
@@ -27,10 +28,15 @@ target_include_directories(burndown_library PUBLIC
 target_link_directories(burndown_library PUBLIC ${Boost_LIBRARY_DIRS})
 
 # depends on boost, libsass
-target_link_libraries(burndown_library PUBLIC ${Boost_LIBRARIES} ${Sass_LIBRARIES})
+target_link_libraries(
+    burndown_library 
+PUBLIC 
+    ${Boost_LIBRARIES} 
+    ${Sass_LIBRARIES}
+    ${CMAKE_DL_LIBS})
 
 # All users of this library will need at least C++14
-target_compile_features(burndown_library PUBLIC cxx_std_17)
+target_compile_features(burndown_library PUBLIC cxx_std_14)
 
 # IDEs should put the headers in a nice place
 source_group(TREE "${PROJECT_SOURCE_DIR}/include" PREFIX "Header Files" FILES ${HEADER_LIST})

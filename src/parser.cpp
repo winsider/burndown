@@ -7,9 +7,9 @@ namespace ltc
 {
     namespace bd
     {
-        std::vector<std::string_view> parse_csp_buffer(const std::vector<char>& csp_txt)
+        std::vector<string_segment> parse_csp_buffer(const std::vector<char>& csp_txt)
         {
-            std::vector<std::string_view> cblks;
+            std::vector<string_segment> cblks;
 
             const auto end_it = csp_txt.end() - 3;
             auto it = csp_txt.begin();
@@ -40,7 +40,7 @@ namespace ltc
                                     // End codeblock
                                     end_cb = it - 2;
                                     if (end_cb - start_cb > 0)
-                                        cblks.emplace_back(std::string_view(&(*start_cb), end_cb - start_cb));
+                                        cblks.emplace_back(string_segment(&(*start_cb), end_cb - start_cb));
                                     break;
                                 }
                                 else continue;

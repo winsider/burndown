@@ -29,7 +29,7 @@ namespace ltc
             }
         }
 
-        void Template::add_text(std::string_view txt)
+        void Template::add_text(string_segment txt)
         {
             m_tunit_writers.emplace_back([txt](int idx)
                 {
@@ -37,7 +37,7 @@ namespace ltc
                 });
         }
 
-        void Template::add_code(std::string_view code)
+        void Template::add_code(string_segment code)
         {
             m_tunit_writers.emplace_back([code](int idx)
                 {
@@ -45,7 +45,7 @@ namespace ltc
                 });
         }
 
-        void Template::add_include(std::string_view include)
+        void Template::add_include(string_segment include)
         {
             m_include_writers.emplace_back([include](int idx) 
                 {
@@ -71,11 +71,11 @@ namespace ltc
             {
                 auto size = end - begin;
                 if (size > 0)
-                    tmpl->add_text(std::string_view(begin, size));
+                    tmpl->add_text(string_segment(begin, size));
                 return begin + size;
             };
 
-            const auto push_code = [&tmpl](std::string_view code) 
+            const auto push_code = [&tmpl](string_segment code) 
             {
                 if (code.find("#include") != std::string::npos)
                     tmpl->add_include(code);
@@ -84,7 +84,7 @@ namespace ltc
                 return code.data() + code.size() + 3;
             };
 
-            for (const std::string_view& block : sblocks)
+            for (const string_segment& block : sblocks)
             {
                 txt_start = push_txt(txt_start, block.data() - 3);
                 txt_start = push_code(block);
