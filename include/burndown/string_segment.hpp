@@ -18,6 +18,10 @@ namespace ltc
             {}
 
             string_segment(const string_segment&) = default;
+            string_segment(string_segment&&) = default;
+
+            string_segment& operator=(const string_segment&) = default;
+            string_segment& operator=(string_segment&&) = default;
 
             size_t find(const char * s) const
             {
@@ -26,18 +30,12 @@ namespace ltc
                     const auto p = strstr(m_ptr, s);
                     if (p)
                         return p - m_ptr;
-                    else
-                        return -1;
                 }
-                else
-                    return -1;
+                return -1;
             }
 
-            const char * data() const
-            { return m_ptr; }
-
-            size_t size() const
-            { return m_len; }
+            const char * data() const { return m_ptr; }
+            size_t size() const { return m_len; }
 
             friend std::ostream& operator<< (std::ostream& stream, const string_segment& segment)
             {
