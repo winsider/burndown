@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include <functional>
+#include <burndown/string_segment.hpp>
 
 namespace ltc
 {
@@ -25,13 +26,13 @@ namespace ltc
         private:
             Template(std::vector<char> file_data);
 
-            void add_text(std::string_view txt);
-            void add_code(std::string_view code);
-            void add_include(std::string_view inc);
+            void add_text(string_segment txt);
+            void add_code(string_segment code);
+            void add_include(string_segment inc);
 
             using Writer = std::function<void(int idx)>;            
             std::vector<char> m_file_data; 
-            std::vector<std::string_view> m_blocks;
+            std::vector<string_segment> m_blocks;
             std::vector<Writer> m_include_writers;
             std::vector<Writer> m_header_decl_writers;
             std::vector<Writer> m_tunit_decl_writers;
