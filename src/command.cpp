@@ -14,7 +14,7 @@ namespace ltc
             po::options_description desc("Allowed options");
             desc.add_options()
                 ("help,h", "produce help message")
-                ("init", "initialize new project")
+                ("init,i", "initialize new project")
                 ("version,v", "print version string")
                 ;
             po::variables_map vm;
